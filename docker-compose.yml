@@ -1,0 +1,90 @@
+version: "3.4"
+
+networks:
+  proxynetwork:
+    external: true
+  net:
+    driver: overlay
+    attachable: true
+
+volumes:
+  mariadb_data:
+
+services:
+  mailhog:
+    image: mailhog/mailhog
+    networks:
+      - net
+      - proxynetwork
+    depends_on:
+      - proxynetwork
+    deploy:
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.mailhog-joomla.rule=Host(`mailhog-joomla.traefik.me`)"
+        - "traefik.http.routers.mailhog-joomla-tls.tls.domains[0].main=mailhog-joomla.traefik.me"
+        - "traefik.http.routers.mailhog-joomla-tls.tls.domains[0].sans=mailhog-joomla-*.traefik.me"
+        - "traefik.http.services.mailhog-joomla.loadbalancer.server.port=8025"
+  mariadb:
+    image: mariadb:10.5.6
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: core
+      MYSQL_USER: siteinternet
+      MYSQL_PASSWORD: password
+      TZ: Europe/Paris
+    networks:
+      - net
+    deploy:
+      labels:
+        - "traefik.enable=false"
+    volumes:
+      - mariadb_data:/var/lib/mysql
+      - ${PWD}/dump:/dump
+  apache:
+    image: httpd
+    depends_on:
+      - phpfpm
+    volumes:
+      - ${PWD}/apps:/var/www/
+      - ${PWD}/conf/httpd.conf:/usr/local/apache2/conf/httpd.conf
+    networks:
+      - net
+      - proxynetwork
+    deploy:
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.joomla.rule=Host(`joomla.traefik.me`)"
+        - "traefik.http.routers.joomla-tls.tls.domains[0].main=joomla.traefik.me"
+        - "traefik.http.routers.joomla-tls.tls.domains[0].sans=joomla-*.traefik.me"
+        - "traefik.http.services.joomla.loadbalancer.server.port=80"
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOST: mariadb
+      MYSQL_ROOT_PASSWORD: example
+    depends_on:
+      - mariadb
+    networks:
+      - net
+      - proxynetwork
+    deploy:
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.phpmyadmin-joomla.rule=Host(`phpmyadmin-joomla.traefik.me`)"
+        - "traefik.http.routers.phpmyadmin-joomla-tls.tls.domains[0].main=phpmyadmin-joomla.traefik.me"
+        - "traefik.http.routers.phpmyadmin-joomla-tls.tls.domains[0].sans=phpmyadmin-joomla-*.traefik.me"
+        - "traefik.http.services.phpmyadmin-joomla.loadbalancer.server.port=80"
+  phpfpm:
+    image: koromerzhin/phpfpm:7.4.12
+    depends_on:
+      - mariadb
+      - mailhog
+    volumes:
+      - ${PWD}/apps:/var/www/
+      - ${PWD}/conf/httpd.conf:/usr/local/apache2/conf/httpd.conf
+    networks:
+      - net
+    deploy:
+      labels:
+        - "traefik.enable=false"

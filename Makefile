@@ -72,7 +72,7 @@ else ifeq ($(COMMAND_ARGS),image-pull)
 	@docker image pull httpd
 	@docker image pull koromerzhin/phpfpm:7.4.12
 	@docker image pull mailhog/mailhog:latest
-	@docker image pull mariadb:10.5.6
+	@docker image pull mariadb:10.5.8
 	@docker image pull phpmyadmin/phpmyadmin:latest
 else ifeq ($(COMMAND_ARGS),ls)
 	@docker stack services $(STACK)

@@ -21,7 +21,7 @@ PHPMYADMINFULLNAME := $(PHPMYADMIN).1.$$(docker service ps -f 'name=$(PHPMYADMIN
 
 DOCKER_EXECPHP := @docker exec $(PHPFPMFULLNAME)
 
-SUPPORTED_COMMANDS := composer contributors docker logs git linter ssh update inspect sleep
+SUPPORTED_COMMANDS := contributors docker logs git linter ssh update inspect sleep
 SUPPORTS_MAKE_ARGS := $(findstring $(firstword $(MAKECMDGOALS)), $(SUPPORTED_COMMANDS))
 ifneq "$(SUPPORTS_MAKE_ARGS)" ""
   COMMAND_ARGS := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
@@ -47,45 +47,10 @@ node_modules: package-lock.json
 dump:
 	@mkdir dump
 
-apps/composer.lock: apps/composer.json
-	@docker exec $(PHPFPMFULLNAME) make composer.lock
-	
-apps/vendor: apps/composer.lock
-	@docker exec $(PHPFPMFULLNAME) make vendor
-
 sleep: ## sleep
 	@sleep  $(COMMAND_ARGS)
 
 folders: dump ## Create folder
-
-composer: isdocker ## Scripts for composer
-ifeq ($(COMMAND_ARGS),suggests)
-	$(DOCKER_EXECPHP) make composer suggests
-else ifeq ($(COMMAND_ARGS),outdated)
-	$(DOCKER_EXECPHP) make composer outdated
-else ifeq ($(COMMAND_ARGS),fund)
-	$(DOCKER_EXECPHP) make composer fund
-else ifeq ($(COMMAND_ARGS),prod)
-	$(DOCKER_EXECPHP) make composer prod
-else ifeq ($(COMMAND_ARGS),dev)
-	$(DOCKER_EXECPHP) make composer dev
-else ifeq ($(COMMAND_ARGS),update)
-	$(DOCKER_EXECPHP) make composer update
-else ifeq ($(COMMAND_ARGS),validate)
-	$(DOCKER_EXECPHP) make composer validate
-else
-	@echo "ARGUMENT missing"
-	@echo "---"
-	@echo "make composer ARGUMENT"
-	@echo "---"
-	@echo "suggests: suggestions package pour PHP"
-	@echo "outdated: Packet php outdated"
-	@echo "fund: Discover how to help fund the maintenance of your dependencies."
-	@echo "prod: Installation version de prod"
-	@echo "dev: Installation version de dev"
-	@echo "update: COMPOSER update"
-	@echo "validate: COMPOSER validate"
-endif
 
 contributors: node_modules ## Contributors
 ifeq ($(COMMAND_ARGS),add)
@@ -157,8 +122,6 @@ ifeq ($(COMMAND_ARGS),commit)
 else ifeq ($(COMMAND_ARGS),status)
 	@git status
 else ifeq ($(COMMAND_ARGS),check)
-	@make composer validate -i
-	@make composer outdated -i
 	@make bdd validate -i
 	@make contributors check -i
 	@make linter all -i

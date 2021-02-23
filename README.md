@@ -70,8 +70,8 @@ make help
 ## 🤝 Contributing
 
 Contributions, issues and feature requests are welcome! Feel free to check
-[issues page](https://github.com/koromerzhin/template-joomla/issues).
-You can also take a look at the
+[issues page](https://github.com/koromerzhin/template-joomla/issues). You can
+also take a look at the
 [contributing guide](https://github.com/koromerzhin/template-joomla/blob/develop/CONTRIBUTING.md).
 
 ## Show your support

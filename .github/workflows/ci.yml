@@ -15,10 +15,10 @@ jobs:
         run: docker swarm init --default-addr-pool 10.20.0.0/16
       - name: 'Create proxy network'
         run: make docker create-network
+      - name: 'Create folders'
+        run: make folders
       - name: 'Build containers'
         run: make docker deploy
-      - name: 'Installation version PROD'
-        run: make env-prod
       - name: Setup PHP, with composer and extensions
         uses: shivammathur/setup-php@v2
         with:
@@ -33,16 +33,6 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node
-      - name: Cache Composer packages
-        id: composer-cache
-        uses: actions/cache@v2
-        with:
-          path: |
-            apps/bin
-            apps/vendor
-          key: ${{ runner.os }}-composer ${{ hashFiles('**/apps/composer.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-composer 
       - name: 'Create folders'
         run: make folders
       - name: 'sleep'
@@ -52,22 +42,5 @@ jobs:
       - name: Install npm dependencies
         if: steps.npm-cache.outputs.cache-hit != 'true'
         run: make node_modules
-      - name: Install Composer dependencies
-        if: steps.composer-cache.outputs.cache-hit != 'true'
-        run: make composer dev
       - name: linter readme.md
         run: make linter readme
-      # - name: Run PHP Code Sniffer
-      #   run: make linter phpcs-onlyerror
-      # - name: Run PHP MD
-      #   run: make linter phpmd
-      # - name: Run PHPMND
-      #   run: make linter phpmnd
-      # - name: Linter yaml
-      #   run: make linter yaml
-      # - name: Run phpstan
-      #   run: make linter phpstan
-      # - name: Run Acceptance Tests
-      #   run: make tests behat
-      # - name: Run Tests
-      #   run: make tests simple-phpunit-unit-integration

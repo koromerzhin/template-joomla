@@ -10,7 +10,9 @@
 ## 🏠 [Homepage](https://github.com/koromerzhin/template-joomla#readme)
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#-contributors)
+
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Need
@@ -40,19 +42,19 @@ make install
 
 ## after git add
 
-``` sh
+```sh
 make git check
 ```
 
 ## Replace git commit
 
-``` sh
+```sh
 make git commit
 ```
 
 ## help
 
-``` sh
+```sh
 make help
 ```
 
@@ -67,8 +69,7 @@ make help
 
 ## 🤝 Contributing
 
-Contributions, issues and feature requests are welcome!
-Feel free to check
+Contributions, issues and feature requests are welcome! Feel free to check
 [issues page](https://github.com/koromerzhin/template-joomla/issues).
 You can also take a look at the
 [contributing guide](https://github.com/koromerzhin/template-joomla/blob/develop/CONTRIBUTING.md).
@@ -82,7 +83,8 @@ Give a ⭐️ if this project helped you!
 Copyright © 2020 [Koromerzhin](https://github.com/koromerzhin).
 
 This project is
-[MIT](https://github.com/koromerzhin/template-joomla/blob/develop/LICENSE) licensed.
+[MIT](https://github.com/koromerzhin/template-joomla/blob/develop/LICENSE)
+licensed.
 
 ## ✨ Contributors
 

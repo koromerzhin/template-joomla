@@ -10,7 +10,9 @@
 ## 🏠 [Homepage](https://github.com/koromerzhin/template-joomla#readme)
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#-contributors)
+
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Need
@@ -67,10 +69,9 @@ make help
 
 ## 🤝 Contributing
 
-Contributions, issues and feature requests are welcome!
-Feel free to check
-[issues page](https://github.com/koromerzhin/template-joomla/issues).
-You can also take a look at the
+Contributions, issues and feature requests are welcome! Feel free to check
+[issues page](https://github.com/koromerzhin/template-joomla/issues). You can
+also take a look at the
 [contributing guide](https://github.com/koromerzhin/template-joomla/blob/develop/CONTRIBUTING.md).
 
 ## Show your support
@@ -82,7 +83,8 @@ Give a ⭐️ if this project helped you!
 Copyright © 2020 [Koromerzhin](https://github.com/koromerzhin).
 
 This project is
-[MIT](https://github.com/koromerzhin/template-joomla/blob/develop/LICENSE) licensed.
+[MIT](https://github.com/koromerzhin/template-joomla/blob/develop/LICENSE)
+licensed.
 
 ## ✨ Contributors
 

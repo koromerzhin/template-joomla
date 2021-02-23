@@ -32,12 +32,6 @@ Hosts:
 - mailhog-joomla.traefik.me
 - phpmyadmin-joomla.traefik.me
 
-## Récupérer les images docker
-
-``` sh
-make docker image-pull
-```
-
 ## Install
 
 ```sh

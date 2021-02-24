@@ -47,9 +47,6 @@ node_modules: package-lock.json
 dump:
 	@mkdir dump
 
-sleep: ## sleep
-	@sleep  $(COMMAND_ARGS)
-
 folders: dump ## Create folder
 
 contributors: node_modules ## Contributors
@@ -62,6 +59,10 @@ else ifeq ($(COMMAND_ARGS),generate)
 else
 	@npm run contributors
 endif
+
+.PHONY: sleep
+sleep: ## sleep
+	@sleep  $(COMMAND_ARGS)
 
 docker: isdocker ## Scripts docker
 ifeq ($(COMMAND_ARGS),create-network)

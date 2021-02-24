@@ -12,7 +12,7 @@ volumes:
 
 services:
   mailhog:
-    image: mailhog/mailhog
+    image: mailhog/mailhog:v1.0.1
     networks:
       - net
       - proxynetwork
@@ -42,7 +42,7 @@ services:
       - mariadb_data:/var/lib/mysql
       - ${PWD}/dump:/dump
   apache:
-    image: httpd
+    image: httpd:2.4.46
     depends_on:
       - phpfpm
     volumes:
@@ -59,7 +59,7 @@ services:
         - "traefik.http.routers.joomla-tls.tls.domains[0].sans=joomla-*.traefik.me"
         - "traefik.http.services.joomla.loadbalancer.server.port=80"
   phpmyadmin:
-    image: phpmyadmin/phpmyadmin
+    image: phpmyadmin/phpmyadmin:5.1.0
     environment:
       PMA_HOST: mariadb
       MYSQL_ROOT_PASSWORD: example

@@ -10,9 +10,7 @@
 ## 🏠 [Homepage](https://github.com/koromerzhin/template-joomla#readme)
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#-contributors)
-
+[![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#-contributors)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Need
@@ -97,6 +95,9 @@ Thanks goes to these wonderful people
 <table>
   <tr>
     <td align="center"><a href="https://github.com/koromerzhin"><img src="https://avatars0.githubusercontent.com/u/308012?v=4" width="100px;" alt=""/><br /><sub><b>Le TOULLEC Martial</b></sub></a></td>
+    <td align="center"><a href="https://restyled.io"><img src="https://avatars0.githubusercontent.com/u/65077583?v=4" width="100px;" alt=""/><br /><sub><b>Restyled Commits</b></sub></a></td>
+    <td align="center"><a href="https://renovatebot.com"><img src="https://avatars0.githubusercontent.com/u/25180681?v=4" width="100px;" alt=""/><br /><sub><b>Renovate Bot</b></sub></a></td>
+    <td align="center"><a href="https://imgbot.net/"><img src="https://avatars.githubusercontent.com/u/31427850?v=4" width="100px;" alt=""/><br /><sub><b>Imgbot</b></sub></a></td>
   </tr>
 </table>
 

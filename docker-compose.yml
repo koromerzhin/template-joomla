@@ -41,9 +41,6 @@ services:
     deploy:
       labels:
         - "traefik.enable=false"
-    volumes:
-      - mariadb_data:/var/lib/mysql
-      - ${PWD}/dump:/dump
   apache:
     image: httpd:2.4.46
     depends_on:

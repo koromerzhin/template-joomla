@@ -1,6 +1,6 @@
 {
   "name": "@koromerzhin/template-joomla",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Template de site internet sous joomla",
   "main": "index.js",
   "scripts": {

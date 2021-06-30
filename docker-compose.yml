@@ -21,7 +21,7 @@ services:
     deploy:
       labels:
         - "traefik.enable=true"
-        - "traefik.http.routers.mailhog-joomla.rule=Host(`mailhog-joomla.traefik.me`)"
+        - "traefik.http.routers.mailhog-joomla.rule=HostRegexp(`mailhog-joomla.traefik.me`, `mailhog-joomla.{ip:.*}.traefik.me`)"
         - "traefik.http.routers.mailhog-joomla-tls.tls.domains[0].main=mailhog-joomla.traefik.me"
         - "traefik.http.routers.mailhog-joomla-tls.tls.domains[0].sans=mailhog-joomla-*.traefik.me"
         - "traefik.http.services.mailhog-joomla.loadbalancer.server.port=8025"
@@ -54,7 +54,7 @@ services:
     deploy:
       labels:
         - "traefik.enable=true"
-        - "traefik.http.routers.joomla.rule=Host(`joomla.traefik.me`)"
+        - "traefik.http.routers.joomla.rule=HostRegexp(`joomla.traefik.me`, `joomla.{ip:.*}.traefik.me`)"
         - "traefik.http.routers.joomla-tls.tls.domains[0].main=joomla.traefik.me"
         - "traefik.http.routers.joomla-tls.tls.domains[0].sans=joomla-*.traefik.me"
         - "traefik.http.services.joomla.loadbalancer.server.port=80"
@@ -71,7 +71,7 @@ services:
     deploy:
       labels:
         - "traefik.enable=true"
-        - "traefik.http.routers.phpmyadmin-joomla.rule=Host(`phpmyadmin-joomla.traefik.me`)"
+        - "traefik.http.routers.phpmyadmin-joomla.rule=HostRegexp(`phpmyadmin-joomla.traefik.me`, `phpmyadmin-joomla.{ip:.*}.traefik.me`)"
         - "traefik.http.routers.phpmyadmin-joomla-tls.tls.domains[0].main=phpmyadmin-joomla.traefik.me"
         - "traefik.http.routers.phpmyadmin-joomla-tls.tls.domains[0].sans=phpmyadmin-joomla-*.traefik.me"
         - "traefik.http.services.phpmyadmin-joomla.loadbalancer.server.port=80"
